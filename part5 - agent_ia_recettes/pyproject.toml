@@ -1,0 +1,19 @@
+[project]
+name = "agent-ia-recettes"
+version = "0.1.0"
+description = "Agent IA basique assistant de recettes avec Google ADK"
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk>=1.0.0",
+    "litellm>=1.60.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ipykernel>=6.29.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

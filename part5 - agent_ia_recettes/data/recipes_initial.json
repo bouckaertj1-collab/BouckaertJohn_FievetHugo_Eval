@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "name": "Pâtes tomate basilic",
+    "category": "plat",
+    "difficulty": "facile",
+    "time_minutes": 25,
+    "ingredients": [
+      "pâtes",
+      "tomate",
+      "basilic",
+      "huile d'olive",
+      "ail"
+    ],
+    "instructions": "Faire cuire les pâtes. Préparer une sauce avec la tomate, l'ail et l'huile d'olive. Ajouter le basilic et mélanger."
+  },
+  {
+    "id": 2,
+    "name": "Omelette fromage",
+    "category": "plat",
+    "difficulty": "facile",
+    "time_minutes": 10,
+    "ingredients": [
+      "oeufs",
+      "fromage",
+      "sel",
+      "poivre",
+      "beurre"
+    ],
+    "instructions": "Battre les oeufs, ajouter le fromage, le sel et le poivre. Cuire dans une poêle avec un peu de beurre."
+  },
+  {
+    "id": 3,
+    "name": "Salade de pois chiches",
+    "category": "entree",
+    "difficulty": "facile",
+    "time_minutes": 15,
+    "ingredients": [
+      "pois chiches",
+      "concombre",
+      "tomate",
+      "citron",
+      "persil",
+      "huile d'olive"
+    ],
+    "instructions": "Mélanger les pois chiches avec les légumes coupés. Ajouter le citron, le persil et l'huile d'olive."
+  },
+  {
+    "id": 4,
+    "name": "Crêpes simples",
+    "category": "dessert",
+    "difficulty": "facile",
+    "time_minutes": 30,
+    "ingredients": [
+      "farine",
+      "oeufs",
+      "lait",
+      "sucre",
+      "beurre"
+    ],
+    "instructions": "Mélanger la farine, les oeufs, le lait et le sucre. Cuire les crêpes dans une poêle légèrement beurrée."
+  }
+]
