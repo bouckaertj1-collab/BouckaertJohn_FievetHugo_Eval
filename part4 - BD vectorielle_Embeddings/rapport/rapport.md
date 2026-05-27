@@ -49,8 +49,8 @@ Cette détection est ajoutée après la recherche des plus proches voisins. Le m
 
 Le programme classe un article comme ambigu dans deux situations :
 
-- lorsque les voisins trouvés sont trop partagés entre sport et cuisine ;
-- lorsque la similarité avec le meilleur voisin est trop faible.
+- lorsque les voisins trouvés sont trop partagés entre sport et cuisine (proportion_majoritaire <= 0.60) ;
+- lorsque la similarité avec le meilleur voisin est trop faible (meilleure_similarite < 0.55).
 
 Dans le notebook, la classification utilise `k = 5`. Par exemple, si les cinq voisins les plus proches sont répartis en trois documents sport et deux documents cuisine, la majorité existe, mais elle reste trop faible pour être totalement fiable. Le programme considère alors que le texte est ambigu.
 
@@ -58,7 +58,7 @@ De la même manière, si le meilleur voisin obtenu a une similarité trop faible
 
 ## 5. Résultats obtenus
 
-Les résultats obtenus sont satisfaisants dans le cadre de ce travail. Les articles de test clairement liés au sport ou à la cuisine sont correctement classés. Les articles ambigus sont également pris en compte dans l’évaluation, puisque le programme peut maintenant retourner la catégorie `ambigu`.
+Les résultats obtenus sont satisfaisants dans le cadre de ce travail. Les articles de test clairement liés au sport ou à la cuisine sont correctement classés. Les articles ambigus sont également pris en compte dans l’évaluation, puisque le programme peut retourner la catégorie `ambigu`.
 
 L’analyse des voisins permet aussi de justifier les prédictions. Pour chaque article testé, le programme affiche les documents d’entraînement les plus proches, leur catégorie et leur similarité avec le texte testé. Cela permet de comprendre pourquoi un article est classé comme sport, cuisine ou ambigu.
 
@@ -66,8 +66,11 @@ Les résultats montrent donc que l’approche fonctionne bien sur les fichiers u
 
 ## 6. Utilisation de l’IA générative et analyse réflexive
 
-L’IA générative a été utilisée pour générer les articles utilisés pour les tests, pour formuler certaines explications du notebook. Elle a surtout servi de support de compréhension et de vérification. 
+L’IA générative a été utilisée comme aide pendant la réalisation de ce travail. Elle m’a notamment permis de générer les articles utilisés pour les tests, afin d’avoir des exemples variés autour des thèmes du sport, de la cuisine et des textes ambigus.
 
+Elle m’a aussi aidé à reformuler certaines explications du notebook et du rapport, pour rendre les descriptions plus claires et plus structurées. En parallèle, elle a servi de support pour mieux comprendre la théorie liée aux embeddings, aux bases vectorielles et au fonctionnement général de la classification par similarité.
+
+L’IA a également été utilisée pour m’aider à débuguer certaines parties du code, notamment lorsque des erreurs apparaissaient. Cela m’a permis de mieux comprendre l’origine des erreurs et de corriger le code de manière plus réfléchie.
 
 ## 7. Limites et améliorations possibles
 
@@ -75,7 +78,7 @@ Le programme donne de bons résultats sur les fichiers de test utilisés, mais i
 
 Les seuils utilisés pour détecter les cas ambigus sont fixés manuellement. Ils fonctionnent pour les tests réalisés, mais ils pourraient être ajustés avec un jeu de test plus large.
 
-Avec de vrais articles plus longs, il faudrait aussi tenir compte de la limite de tokens du modèle d’embeddings. Si un texte est trop long, le modèle peut ne prendre en compte qu’une partie du contenu. Une amélioration possible serait donc de découper les longs articles en plusieurs morceaux, puis de combiner les résultats obtenus.
+Avec de vrais articles plus longs, il faudrait aussi tenir compte de la limite de tokens du modèle d’embeddings. Si un texte est trop long, le modèle peut ne prendre en compte qu’une partie du contenu.
 
 Pour améliorer le projet, on pourrait également ajouter plus d’articles, tester plusieurs modèles d’embeddings, comparer différentes valeurs de `k`, ou analyser plus précisément l’impact des seuils utilisés pour la catégorie `ambigu`.
 
