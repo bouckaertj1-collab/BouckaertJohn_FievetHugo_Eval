@@ -58,7 +58,7 @@ De la même manière, si le meilleur voisin obtenu a une similarité trop faible
 
 ## 5. Résultats obtenus
 
-Les résultats obtenus sont satisfaisants dans le cadre de ce travail. Les articles de test clairement liés au sport ou à la cuisine sont correctement classés. Les articles ambigus sont également pris en compte dans l’évaluation, puisque le programme peut retourner la catégorie `ambigu`.
+Les résultats obtenus sont satisfaisants dans le cadre de ce travail. Les articles de test clairement liés au sport ou à la cuisine sont correctement classés. Les articles ambigus sont également utilisés dans les tests, afin de vérifier que le programme ne force pas systématiquement une réponse sport ou cuisine lorsque le texte mélange volontairement les deux thèmes.
 
 L’analyse des voisins permet aussi de justifier les prédictions. Pour chaque article testé, le programme affiche les documents d’entraînement les plus proches, leur catégorie et leur similarité avec le texte testé. Cela permet de comprendre pourquoi un article est classé comme sport, cuisine ou ambigu.
 
@@ -68,7 +68,7 @@ Les résultats montrent donc que l’approche fonctionne bien sur les fichiers u
 
 L’IA générative a été utilisée comme aide pendant la réalisation de ce travail. Elle m’a notamment permis de générer les articles utilisés pour les tests, afin d’avoir des exemples variés autour des thèmes du sport, de la cuisine et des textes ambigus.
 
-Elle m’a aussi aidé à reformuler certaines explications du notebook et du rapport, pour rendre les descriptions plus claires et plus structurées. En parallèle, elle a servi de support pour mieux comprendre la théorie liée aux embeddings, aux bases vectorielles et au fonctionnement général de la classification par similarité.
+Elle m’a aussi aidé à reformuler certaines explications du notebook et du rapport, pour rendre les descriptions plus claires. En parallèle, elle a servi de support pour mieux comprendre la théorie liée aux embeddings, aux bases vectorielles et au fonctionnement général de la classification par similarité.
 
 L’IA a également été utilisée pour m’aider à débuguer certaines parties du code, notamment lorsque des erreurs apparaissaient. Cela m’a permis de mieux comprendre l’origine des erreurs et de corriger le code de manière plus réfléchie.
 
