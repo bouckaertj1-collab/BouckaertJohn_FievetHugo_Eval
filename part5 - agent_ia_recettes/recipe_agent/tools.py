@@ -276,3 +276,25 @@ def delete_recipe(recipe_id: int) -> str:
             _save_recipes(recipes)
             return f"Recette supprimée : '{removed['name']}' (id: {recipe_id})."
     return f"Erreur : aucune recette trouvée avec l'id {recipe_id}."
+
+def delete_recipe_by_name(recipe_name: str) -> str:
+    """Supprime une recette à partir de son nom.
+
+    Args:
+        recipe_name: Nom de la recette à supprimer.
+
+    Returns:
+        Message de confirmation ou message d'erreur.
+    """
+    recipes = _load_recipes()
+    recipe_name_clean = recipe_name.strip().lower()
+
+    for index, recipe in enumerate(recipes):
+        current_name = recipe.get("name", "").strip().lower()
+
+        if current_name == recipe_name_clean:
+            removed = recipes.pop(index)
+            _save_recipes(recipes)
+            return f"Recette supprimée : '{removed['name']}'."
+
+    return f"Erreur : aucune recette trouvée avec le nom '{recipe_name}'."

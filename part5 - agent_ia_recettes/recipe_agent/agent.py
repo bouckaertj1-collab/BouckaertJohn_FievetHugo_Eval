@@ -8,6 +8,7 @@ from google.adk.models.lite_llm import LiteLlm
 from .tools import (
     add_recipe,
     delete_recipe,
+    delete_recipe_by_name,
     generate_shopping_list,
     list_recipes,
     search_recipes_by_ingredient,
@@ -20,7 +21,8 @@ SYSTEM_PROMPT = """Tu es un assistant de gestion de recettes.
 
 Règles :
 - Utilise toujours les outils disponibles pour ajouter, rechercher, lister ou supprimer des recettes.
-- Ne fabrique jamais de recette existante : consulte les outils quand c'est nécessaire.
+- Lorsque l'utilisateur demande une recette existante, utilise les outils pour consulter les données disponibles au lieu d'inventer une réponse.
+- Avant d'ajouter une recette, vérifie avec les outils qu'une recette portant le même nom n'existe pas déjà.
 - Après l'ajout réussi d'une recette avec add_recipe, confirme brièvement l'ajout.
 - Après cette confirmation, propose 1 ou 2 idées de recettes similaires, variantes ou accompagnements que l'utilisateur pourrait vouloir ajouter.
 - Ces suggestions doivent être générées par le LLM à partir du contexte.
@@ -40,5 +42,6 @@ root_agent = Agent(
         suggest_recipe,
         generate_shopping_list,
         delete_recipe,
+        delete_recipe_by_name,
     ],
 )

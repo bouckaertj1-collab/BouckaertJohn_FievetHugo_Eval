@@ -63,7 +63,7 @@ Le fichier `recipes.json` sert de stockage local. Les recettes restent enregistr
 
 ## 7. Outils développés
 
-Les outils sont des fonctions Python classiques rendues accessibles à l'agent.
+Les outils sont des fonctions Python classiques rendues accessibles à l’agent.
 
 - `add_recipe` ajoute une recette dans le fichier JSON.
 - `list_recipes` affiche les recettes enregistrées.
@@ -71,9 +71,9 @@ Les outils sont des fonctions Python classiques rendues accessibles à l'agent.
 - `suggest_recipe` propose une recette en fonction des ingrédients disponibles.
 - `generate_shopping_list` génère une liste de courses pour une recette.
 - `delete_recipe` supprime une recette à partir de son identifiant.
+- `delete_recipe_by_name` supprime une recette à partir de son nom.
 
-Ces outils sont déterministes : pour une même entrée, ils produisent le même résultat. Cela les rend plus faciles à tester que le comportement global d'un agent basé sur un modèle de langage.
-
+Ces outils sont déterministes : pour une même entrée, ils produisent le même résultat. Cela les rend plus faciles à tester que le comportement global d’un agent basé sur un modèle de langage.
 
 ## 7.1 Suggestions automatiques via le LLM
 
@@ -95,20 +95,24 @@ Cette organisation permet d'avoir un projet simple, lisible et testable. Les fon
 
 Ce projet m'a permis de mieux comprendre la différence entre un simple chatbot et un agent IA. L'intérêt principal de l'agent ne vient pas seulement du modèle de langage, mais de sa capacité à utiliser des outils.
 
-Dans ce projet, le modèle sert surtout à comprendre la demande de l'utilisateur. Les actions importantes sont réalisées par les fonctions Python. Cette séparation est importante, car elle permet de garder une partie fiable et testable dans le projet.
+Dans ce projet, le modèle sert surtout à comprendre la demande de l'utilisateur. Les actions importantes sont réalisées par les fonctions Python.
 
 Le choix de l'assistant de recettes montre qu'une architecture vue dans l'atelier de Mr Suire peut être adaptée à un autre domaine. Le principe reste le même : un agent, des outils et des données persistantes. Par contre, les outils développés répondent à un nouveau besoin : rechercher des recettes, proposer un plat ou générer une liste de courses.
 
-Ce travail montre aussi certaines limites. Un modèle de langage peut mal interpréter une demande, oublier d'utiliser un outil ou extraire une information de manière incomplète. Pour limiter ces risques, le prompt système doit être précis et les outils Python doivent gérer les erreurs possibles.
+Ce travail montre aussi certaines limites. Un modèle de langage peut mal interpréter une demande, oublier d’utiliser un outil ou extraire une information de manière incomplète. Pour limiter ces risques, le prompt système doit être précis et les outils Python doivent gérer les erreurs possibles.
+
+Une autre limite observée concerne le temps de réponse. Même pour des demandes simples, l’agent peut prendre plusieurs minutes avant de répondre, car il doit passer par le modèle de langage, analyser la demande, choisir éventuellement un outil, exécuter cet outil puis formuler une réponse. 
 
 Enfin, les tests montrent qu'il faut distinguer les tests du code Python et les tests du comportement de l'agent. Les fonctions Python sont déterministes et peuvent être testées avec `pytest`. Le comportement global de l'agent est plus difficile à valider automatiquement, car il dépend de l'interprétation du modèle.
 
 
 ## 10. Utilisation de l’IA générative
 
-L’IA générative a été utilisée comme support pendant le projet. Elle m’a principalement aidé à reformuler certaines parties du rapport afin de rendre les explications plus claires et mieux structurées.
+L’IA générative a été utilisée comme support pendant le projet. Elle m’a principalement aidé à reformuler certaines parties du rapport afin de rendre les explications plus claires.
 
-Elle m’a également permis de mieux comprendre la théorie liée à la conception d’un agent IA, notamment la logique générale d’un agent, le rôle des outils.
+Elle m’a également permis de mieux comprendre la théorie liée à la conception d’un agent IA, notamment la logique générale d’un agent, le rôle des outils, ainsi que l’utilisation de Google ADK et de LiteLLM dans le projet.
+
+Elle a parfois été utilisée pour m’aider à analyser et débuguer certaines erreurs rencontrées pendant le développement. Les propositions obtenues ont ensuite été relues, adaptées et testées.
 
 ## 11. Organisation des tests
 
@@ -119,6 +123,12 @@ Les tests sont organisés à deux niveaux.
 Les tests unitaires se trouvent dans `tests/test_tools.py`. Ils vérifient les outils Python indépendamment du modèle de langage. Ils utilisent un fichier JSON temporaire afin de ne pas modifier les vraies données du projet.
 
 La commande utilisée est :
+
+```bash
+uv --directory "part5 - agent_ia_recettes" run pytest tests/ -v
+```
+
+Si le terminal est déjà placé dans le dossier `part5 - agent_ia_recettes/` :
 
 ```bash
 uv run pytest tests/ -v
