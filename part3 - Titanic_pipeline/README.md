@@ -17,9 +17,13 @@ L’objectif est de regrouper dans un seul pipeline les étapes principales :
 - `Titanic Dataset.csv` : dataset utilisé pour l’entraînement et l’évaluation.
 - `requirements.txt` : librairies nécessaires pour exécuter le notebook.
 
-## Installation
+## Dépendances
 
-Installer les dépendances avec :
+Le notebook utilise les librairies Python suivantes :
 
-```bash
-pip install -r requirements.txt
+- pandas
+- numpy
+- scikit-learn
+- matplotlib
+
+Ces librairies doivent être installées dans l’environnement Python utilisé pour exécuter le notebook.
