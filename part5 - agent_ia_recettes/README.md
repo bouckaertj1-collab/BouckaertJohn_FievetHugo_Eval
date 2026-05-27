@@ -1,23 +1,130 @@
-# Agent IA Assistant de Recettes
+# Agent IA - Assistant de Recettes
 
-Ce projet contient un agent IA basique basé sur Google ADK. L'agent aide à gérer une petite base locale de recettes.
+Ce dossier contient la partie 5 du travail : un agent IA basique réalisé avec Google ADK.
+
+L’agent permet de gérer une petite base locale de recettes stockée dans un fichier JSON.
 
 ## Fonctionnalités
 
-- Ajouter une recette
-- Lister les recettes
-- Rechercher par ingrédient
-- Suggérer une recette selon les ingrédients disponibles
-- Générer une liste de courses
-- Supprimer une recette
+L’agent peut notamment :
 
-## Installation
+- ajouter une recette ;
+- lister les recettes disponibles ;
+- rechercher des recettes par ingrédient ;
+- suggérer une recette selon les ingrédients disponibles ;
+- générer une liste de courses ;
+- supprimer une recette.
+
+## Structure du dossier
+
+```txt
+part5 - agent_ia_recettes/
+│
+├── agent_ia_assistant_recettes_NOTEBOOK.ipynb
+├── pyproject.toml
+├── uv.lock
+├── recipes.json
+├── data/
+├── recipe_agent/
+│   ├── __init__.py
+│   ├── agent.py
+│   └── tools.py
+├── tests/
+│   └── test_tools.py
+├── rapport/
+│   └── rapport_agent_ia_recettes.md
+└── use_case/
+```
+
+## Prérequis
+
+Pour exécuter cette partie, il faut avoir installé :
+
+- Python ;
+- uv ;
+- Ollama.
+
+Le modèle utilisé par défaut dans `recipe_agent/agent.py` est :
+
+```txt
+ollama_chat/qwen3:4b
+```
+
+Il faut donc installer le modèle Ollama correspondant :
+
+```bash
+ollama pull qwen3:4b
+```
+
+Pour vérifier que le modèle est bien disponible :
+
+```bash
+ollama list
+```
+
+La liste doit contenir :
+
+```txt
+qwen3:4b
+```
+
+---
+
+# Exécution depuis la racine du dépôt
+
+Ces commandes sont prévues pour être lancées depuis la racine du dépôt, c’est-à-dire depuis le dossier qui contient `part3 - Titanic_pipeline`, `part4 - BD vectorielle_Embeddings` et `part5 - agent_ia_recettes`.
+
+## Installer les dépendances
+
+```bash
+uv --directory "part5 - agent_ia_recettes" sync
+```
+
+Si le projet est placé dans OneDrive et que `uv` signale un problème de hardlink, utiliser :
+
+```bash
+uv --directory "part5 - agent_ia_recettes" sync --link-mode=copy
+```
+
+## Lancer les tests
+
+```bash
+uv --directory "part5 - agent_ia_recettes" run pytest
+```
+
+ou avec plus de détails :
+
+```bash
+uv --directory "part5 - agent_ia_recettes" run pytest tests/ -v
+```
+
+## Lancer l’agent
+
+```bash
+uv --directory "part5 - agent_ia_recettes" run adk web
+```
+
+Ouvrir ensuite l’interface web :
+
+```txt
+http://127.0.0.1:8000
+```
+
+Puis sélectionner l’agent `recipe_agent`.
+
+---
+
+# Exécution depuis le dossier de la partie 5
+
+Si le terminal est déjà placé dans le dossier `part5 - agent_ia_recettes/`, les commandes sont plus courtes.
+
+## Installer les dépendances
 
 ```bash
 uv sync
 ```
 
-Si le projet est placé dans OneDrive et que `uv` signale un problème de hardlink, utiliser :
+En cas de problème de hardlink dans OneDrive :
 
 ```bash
 uv sync --link-mode=copy
@@ -26,20 +133,16 @@ uv sync --link-mode=copy
 ## Lancer les tests
 
 ```bash
+uv run pytest
+```
+
+ou :
+
+```bash
 uv run pytest tests/ -v
 ```
 
-## Lancer l'agent
-
-Ollama doit être installé et lancé, avec un modèle disponible, par exemple :
-
-```bash
-ollama pull qwen3:4b
-```
-
-Le modèle configuré par défaut dans `recipe_agent/agent.py` est `ollama_chat/qwen3:4b`.
-
-Puis lancer ADK Web :
+## Lancer l’agent
 
 ```bash
 uv run adk web
@@ -47,20 +150,10 @@ uv run adk web
 
 Ouvrir ensuite :
 
-```text
+```txt
 http://127.0.0.1:8000
 ```
 
-et sélectionner l'agent `recipe_agent`.
+et sélectionner l’agent `recipe_agent`.
 
-## Structure du projet
 
-```text
-recipe_agent/agent.py                               Définition de l'agent ADK
-recipe_agent/tools.py                               Outils Python utilisés par l'agent
-agent_ia_assistant_recettes_NOTEBOOK.ipynb          Notebook de présentation du projet
-recipes.json                                        Base locale de recettes
-tests/test_tools.py                                 Tests unitaires
-rapport/                                            Rapport du devoir
-use_case/                                           Diagramme de cas d'utilisation
-```
