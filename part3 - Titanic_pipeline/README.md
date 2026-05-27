@@ -15,7 +15,6 @@ L’objectif est de regrouper dans un seul pipeline les étapes principales :
 
 - `Titanic_Final_Pipeline_Bouckaert_Fievet.ipynb` : notebook principal contenant le pipeline complet.
 - `Titanic Dataset.csv` : dataset utilisé pour l’entraînement et l’évaluation.
-- `requirements.txt` : librairies nécessaires pour exécuter le notebook.
 
 ## Dépendances
 
