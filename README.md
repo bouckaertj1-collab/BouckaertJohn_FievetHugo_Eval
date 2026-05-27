@@ -82,15 +82,15 @@ part4 - BD vectorielle_Embeddings/
 │   └── test/
 ├── rapport/
 │   └── rapport.md
-└── requirements.txt
+└── README.md
 ```
 
 ### Installation
 
-Depuis la racine du dépôt :
+Le notebook contient déjà une cellule d’installation des librairies nécessaires :
 
-```bash
-python -m pip install -r "part4 - BD vectorielle_Embeddings/requirements.txt"
+```python
+%pip install python-docx sentence-transformers faiss-cpu numpy pandas scikit-learn matplotlib
 ```
 
 ### Exécution
@@ -192,6 +192,40 @@ uv --directory "part5 - agent_ia_recettes" run adk web
 
 Une interface web ADK s’ouvre ensuite dans le navigateur.
 
+
+# Exécution depuis le dossier de la partie 5
+
+Si le terminal est déjà placé dans le dossier `part5 - agent_ia_recettes/`, les commandes sont plus courtes.
+
+## Installer les dépendances
+
+```bash
+uv sync
+```
+
+En cas de problème de hardlink dans OneDrive :
+
+```bash
+uv sync --link-mode=copy
+```
+
+## Lancer les tests
+
+```bash
+uv run pytest
+```
+
+ou :
+
+```bash
+uv run pytest tests/ -v
+```
+
+## Lancer l’agent
+
+```bash
+uv run adk web
+```
 
 ## Remarque finale
 
